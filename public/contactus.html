@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="contactApp">
+<head>
+    <title>Contact Us</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    body {
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-image: url("https://www.zoomcar.com/img/bg-desktop.png");
+        background-size: cover;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .login-container {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 22vw;
+    }
+
+    .login-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .login-form input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+
+    .login-form button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        margin: 5px 0px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .login-form button:hover {
+        background-color: #45a049;
+    }
+</style>
+<body>
+
+<div class="login-container" ng-controller="ContactController">
+    <h2>Contact Us</h2>
+    
+    <form  class="login-form" ng-submit="submitForm()">
+        <label>Name:</label><br>
+        <input type="text" ng-model="formData.name" required><br>
+        
+        <label>Email:</label><br>
+        <input type="email" ng-model="formData.email" required><br>
+        
+        <label>Message:</label><br>
+        <textarea ng-model="formData.message" required></textarea><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+    <div ng-show="formSubmitted">
+        <h2>Thank you for contacting us!</h2>
+        <p>We'll get back to you as soon as possible.</p>
+    </div>
+</div>
+
+<script>
+    angular.module('contactApp', [])
+        .controller('ContactController', function ($scope) {
+            $scope.formData = {};
+            $scope.formSubmitted = false;
+            
+            $scope.submitForm = function () {
+                $scope.formSubmitted = true;
+            };
+        });
+</script>
+
+</body>
+</html>

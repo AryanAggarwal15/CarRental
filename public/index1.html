@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./zoom.css">
+
+    
+</head>
+<body>
+    <nav>
+        <div id="mainvav">
+            <div>
+                <a href="index.html">
+                    <img id="logoSize" src="./8add5b77487705.5cb02ce7e3e73-removebg-preview.png" alt="">
+                </a>
+            </div>
+            <div id="navbarSupportedContent">
+                <ul>
+                    <li><a href="./login.html">Login</a></li>
+                    <li><a href="./signup.html">Register</a></li>
+                    <li><a href="./contactus.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="booking">
+        <form id="form">
+            <input type="text" id="pickupCity" class="placeholder1" placeholder="Pick Up City">
+            <input type="text" id="dropOffCity" class="placeholder1" placeholder="Drop Off City">
+            <div>
+                <button id="primaryButton" type="button" onclick="filterByCity()">FIND CARS</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="heading">
+            <h3>POPULAR CARS NEAR YOU</h3>
+        </div>
+    </div>
+
+    <div class="car-list-container" id="carListContainer">
+        
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+         <div class="row1">
+           <div class="footer-col">
+             <h4>company</h4>
+             <ul>
+               <li><a href="#">about us</a></li>
+               <li><a href="#">our services</a></li>
+               <li><a href="#">privacy policy</a></li>
+               <li><a href="#">affiliate program</a></li>
+             </ul>
+           </div>
+           <div class="footer-col">
+             <h4>get help</h4>
+             <ul>
+               <li><a href="#">FAQ</a></li>
+               <li><a href="#">order status</a></li>
+               <li><a href="#">payment options</a></li>
+             </ul>
+           </div>
+           <div class="footer-col">
+             <h4>Cities</h4>
+             <ul>
+               <li><a href="#">dehradun</a></li>
+               <li><a href="#">delhi</a></li>
+               <li><a href="#">kanpur</a></li>
+             </ul>
+           </div>
+           <div class="footer-bottom">
+            © 2024 Weather App. All rights reserved.
+            <a href="index1.html" target="_blank">Visit Our Website</a>
+          </div>
+
+         </div>
+        </div>
+     </footer>
+
+    <script>
+        var cars = [
+            { name: 'HYUNDAI VENUE', properties: 'Manual, Petrol, 5 Seats', price: '₹180/hr', location: 'DEHRADUN', image: 'car1.png' },
+            { name: 'HONDA CITY', properties: 'Manual, Petrol, 5 Seats', price: '₹180/hr', location: 'DELHI', image: 'car2.png' },
+            { name: 'SKODA KUSHAQ', properties: 'Automatic, Diesel, 5 Seats', price: '₹180/hr', location: 'DEHRADUN', image: 'car3.png' },
+            { name: 'MARUTI SUZUKI ERTIGA', properties: 'Automatic, Petrol, 7 Seats', price: '₹180/hr', location: 'KANPUR', image: 'car4.png' },
+            { name: 'TOYOTA INNOVA CRYSTA', properties: 'Manual, Diesel, 7 Seats', price: '₹180/hr', location: 'DELHI', image: 'car5.png' },
+            { name: 'HYUNDAI CRETA', properties: 'Manual, Petrol, 5 Seats', price: '₹180/hr', location: 'DEHRADUN', image: 'car6.png' }
+        ];
+
+        function filterByCity() {
+            var pickupCity = document.getElementById("pickupCity").value.trim().toUpperCase();
+            var filteredCars = cars.filter(function(car) {
+                return car.location.toUpperCase() === pickupCity || pickupCity === '';
+            });
+            displayCars(filteredCars);
+        }
+
+        function displayCars(cars) {
+            var carListContainer = document.getElementById("carListContainer");
+            carListContainer.innerHTML = ""; // Clear previous content
+
+            cars.forEach(function(car) {
+                var carCard = document.createElement("div");
+                carCard.className = "car-card";
+
+                var carImage = document.createElement("div");
+                carImage.className = "car-image";
+                var img = document.createElement("img");
+                img.src = car.image;
+                img.alt = car.name;
+                carImage.appendChild(img);
+
+                var carDetails = document.createElement("div");
+                carDetails.className = "car-details";
+                var h2 = document.createElement("h2");
+                h2.className = "car-title";
+                h2.textContent = car.name;
+                var p1 = document.createElement("p");
+                p1.className = "car-properties";
+                p1.textContent = car.properties;
+                var p2 = document.createElement("p");
+                p2.className = "car-price";
+                p2.textContent = car.price;
+                var p3 = document.createElement("p");
+                p3.className = "car-location";
+                p3.textContent = car.location;
+
+                carDetails.appendChild(h2);
+                carDetails.appendChild(p1);
+                carDetails.appendChild(p2);
+                carDetails.appendChild(p3);
+
+                carCard.appendChild(carImage);
+                carCard.appendChild(carDetails);
+
+                carListContainer.appendChild(carCard);
+            });
+        }
+
+        displayCars(cars);
+    </script>
+</body>
+</html>
